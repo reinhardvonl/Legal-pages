@@ -57,6 +57,7 @@ public class Legal {
 	String disn=null;
 	private JTextField textField_3;
 	private JPasswordField passwordField;
+	protected String cookien;
 
 	/**
 	 * Launch the application.
@@ -1200,13 +1201,13 @@ public class Legal {
 			public String CCPA;
 			private String CCPAFR;
 			private String CCPAESP;
-			private String CP;
+			private String CPENG;
 			
 			public void actionPerformed(ActionEvent e) {
 				email= textField_1.getText();
 				name= textField.getText();
 				url=textField_2.getText();
-				CP="<h1>Cookie Policy for "+name+"</h1>\r\n"
+				CPENG="<h1>Cookie Policy for "+name+"</h1>\r\n"
 						+ "\r\n"
 						+ "<p>This is the Cookie Policy for "+name+", accessible from "+url+"</p>\r\n"
 						+ "\r\n"
@@ -1906,7 +1907,8 @@ public class Legal {
 			DCMAn="DMCA";
 			disc=dis;
 			disn="Disclaimer";
-			Cookie=CP;
+			Cookie=CPENG;
+			cookien="Cookie Policy";
 			C=CCPA;
 			}
 			else if (rdbtnNewRadioButton_1.isSelected()) {About=AboutFR;
@@ -1946,14 +1948,14 @@ public class Legal {
 					password=passwordField.getText();
 						Wordpress wp = null;
 						try {
-							wp = new Wordpress(username, password, "https://www."+gurl+"//xmlrpc.php");
+							wp = new Wordpress(username, password, "https://"+gurl+"//xmlrpc.php");
 						} catch (MalformedURLException e1) {
 							// TODO Auto-generated catch block
 							try {
-								wp = new Wordpress(username, password, "https://"+gurl+"//xmlrpc.php");
+								wp = new Wordpress(username, password, "https://www."+gurl+"//xmlrpc.php");
 							} catch (MalformedURLException e2) {
 								// TODO Auto-generated catch block
-								error err = new error(e2.toString());
+								error err = new error(e1.toString()+"\n"+e2.toString());
 								err.setVisible(true);
 								frame.dispose();
 							}
@@ -1992,7 +1994,7 @@ public class Legal {
 					CC.setPost_content(C);
 					CC.setPost_status("publish");
 					
-					CP.setPost_title("Cookies Policy");
+					CP.setPost_title(cookien);
 					CP.setPost_content(Cookie);
 					CP.setPost_status("publish");
 					
