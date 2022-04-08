@@ -6,6 +6,8 @@ import java.awt.datatransfer.Clipboard;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import java.awt.BorderLayout;
+import java.awt.Checkbox;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
@@ -35,6 +37,9 @@ import java.awt.Color;
 import javax.swing.JRadioButtonMenuItem;
 import java.awt.Label;
 import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Legal {
 
@@ -58,6 +63,7 @@ public class Legal {
 	private JTextField textField_3;
 	private JPasswordField passwordField;
 	protected String cookien;
+	Boolean pp,tc,cp,di,dm,cc,ab;
 
 	/**
 	 * Launch the application.
@@ -639,10 +645,7 @@ public class Legal {
 				}
 				else if( rdbtnNewRadioButton_3.isSelected()) {privacy=privacyJP;}
 				else if( rdbtnNewRadioButton_4.isSelected()) {privacy=privacyAR;}
-				StringSelection stringSelection = new StringSelection(privacy);
-				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 				
-				clipboard.setContents(stringSelection, null);
 			}
 		});
 		btnNewButton.setBounds(34, 316, 89, 23);
@@ -1171,10 +1174,7 @@ public class Legal {
 				termsn="Términos y condiciones";}
 				else if( rdbtnNewRadioButton_3.isSelected()) {terms=termsJP;}
 				else if( rdbtnNewRadioButton_4.isSelected()) {terms=termsAR;}
-				StringSelection stringSelection = new StringSelection(terms);
-				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-			
-				clipboard.setContents(stringSelection, null);
+				
 			}
 		});
 		btnNewButton_1.setBounds(157, 316, 89, 23);
@@ -1202,11 +1202,92 @@ public class Legal {
 			private String CCPAFR;
 			private String CCPAESP;
 			private String CPENG;
+			private String CPFR;
 			
 			public void actionPerformed(ActionEvent e) {
+				
 				email= textField_1.getText();
 				name= textField.getText();
 				url=textField_2.getText();
+				CPFR="<h1> Politique de cookie pour "+name+" </h1>\r\n"
+						+ "\r\n"
+						+ "<p> Ceci est la politique de cookie pour "+name+", accessible depuis "+name+" </p>\r\n"
+						+ "\r\n"
+						+ "<p> <strong> Que sont les cookies </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<p> Telle est la pratique courante avec presque tous les sites Web professionnels, ce site utilise des cookies, qui sont des fichiers minuscules téléchargés sur votre ordinateur, afin d'améliorer votre expérience. Cette page décrit quelles informations elles collaborent, comment nous l'utilisons et pourquoi nous avons parfois besoin de stocker ces cookies. Nous partagerons également comment vous pouvez empêcher ces cookies d'être stockés, cependant, cela pourrait rétrograder ou «casser» certains éléments de la fonctionnalité des sites. </p>\r\n"
+						+ "\r\n"
+						+ "<p> <strong> comment nous utilisons des cookies </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<p> Nous utilisons des cookies pour une variété de raisons détaillées ci-dessous. Malheureusement, dans la plupart des cas, il n'y a pas d'options standard de l'industrie pour désactiver les cookies sans désactiver complètement la fonctionnalité et les fonctionnalités qu'ils ajoutent à ce site. Il est recommandé de laisser sur tous les cookies si vous ne savez pas si vous en avez besoin ou non au cas où ils seraient utilisés pour fournir un service que vous utilisez. </p>\r\n"
+						+ "\r\n"
+						+ "<p> <strong> Cookies invalidantes </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<p> Vous pouvez empêcher le réglage des cookies en ajustant les paramètres de votre navigateur (voir Aide de votre navigateur pour comment faire cela). Sachez que la désactivation des cookies affectera la fonctionnalité de cette question et de nombreux autres sites Web que vous visitez. La désactivation des cookies entraînera généralement également une certaine désactivation de certaines fonctionnalités et fonctionnalités de ce site. Par conséquent, il est recommandé de ne pas désactiver les cookies. </p>\r\n"
+						+ "<p> <strong> les cookies que nous avons définis </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<ul>\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> Bulletins de messagerie Cookies connexes </p>\r\n"
+						+ "    <p> Ce site propose un bulletin d'information ou des services d'abonnement par courrier électronique et des cookies peuvent être utilisés pour vous rappeler que si vous êtes déjà enregistré et si vous souhaitez afficher certaines notifications qui ne pourraient être valables que pour les utilisateurs souscrits / désinscrits. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> Préférences de site Cookies </p>\r\n"
+						+ "    <p> Afin de vous fournir une excellente expérience sur ce site, nous fournissons la fonctionnalité de définir vos préférences pour la manière dont ce site fonctionne lorsque vous l'utilisez. Afin de rappeler vos préférences, nous devons définir des cookies afin que ces informations puissent être appelées chaque fois que vous interagissez avec une page soit affectée par vos préférences. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "</ul>\r\n"
+						+ "\r\n"
+						+ "<p> <strong> cookies tiers </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<p> Dans certains cas particuliers, nous utilisons également des cookies fournis par des tiers de confiance. La section suivante détaille les cookies tiers que vous pourriez rencontrer via ce site. </p>\r\n"
+						+ "\r\n"
+						+ "<ul>\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> Ce site utilise Google Analytics qui est l'une des solutions analytiques les plus répandues et de confiance sur le Web pour nous aider à comprendre comment vous utilisez le site et les moyens d'améliorer votre expérience. Ces cookies peuvent suivre des choses telles que la durée de votre dépense sur le site et les pages que vous visitez afin que nous puissions continuer à produire du contenu attrayant. </p>\r\n"
+						+ "    <p> Pour plus d'informations sur Google Analytics Cookies, voir la page officielle Google Analytics. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> De temps en temps, nous testons de nouvelles fonctionnalités et nous apportons des modifications subtiles à la manière dont le site est livré. Lorsque nous testons toujours de nouvelles fonctionnalités, ces cookies peuvent être utilisés pour vous assurer de recevoir une expérience cohérente tandis que sur le site tout en garantissant que nous comprenons les optimisations nos utilisateurs apprécient le plus. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> Le service Google AdSense que nous utilisons pour desservir la publicité utilise un cookie de DoubleClick pour servir des annonces plus pertinentes sur le Web et limiter le nombre de fois qu'une annonce donnée vous est montrée. </p>\r\n"
+						+ "    <p> Pour plus d'informations sur Google AdSense, voir la FAQ officiel de la confidentialité Google AdSense. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "\r\n"
+						+ "<li>\r\n"
+						+ "    <p> Nous utilisons également des boutons et / ou des plugins de média sociaux sur ce site qui vous permettent de vous connecter avec votre réseau social de différentes manières. Pour que cela puisse travailler les sites de médias sociaux suivants, y compris; {Listez les réseaux sociaux dont vous avez intégré votre site ?: 12}, définira des cookies via notre site qui peut être utilisé pour améliorer votre profil sur leur site ou contribuer aux données qu'ils possèdent à diverses fins décrites dans leur vie privée respective. Politiques. </p>\r\n"
+						+ "</li>\r\n"
+						+ "\r\n"
+						+ "</ul>\r\n"
+						+ "\r\n"
+						+ "<p> <strong> plus d'informations </strong> </p>\r\n"
+						+ "\r\n"
+						+ "<p> Espérons que cela a clarifié les choses pour vous et comme cela a été mentionné précédemment s'il y a quelque chose que vous n'êtes pas sûr de savoir si vous avez besoin ou non, il est généralement plus sûr de laisser des cookies activés au cas où il interagit avec l'une des fonctionnalités que vous utilisez sur notre site. </p>\r\n"
+						+ "\r\n"
+						+ "<p> Pour plus d'informations générales sur les cookies, veuillez lire <a href=\"https://www.generateprivacypolicy.com/#cookies\"> Article \"Cookies\" du générateur de politique de confidentialité </a>. </p>\r\n"
+						+ "\r\n"
+						+ "<p> Cependant, si vous cherchez toujours plus d'informations, vous pouvez nous contacter via l'une de nos méthodes de contact préférées: </p>\r\n"
+						+ "\r\n"
+						+ "<ul>\r\n"
+						+ "\r\n"
+						+ "<li> En visitant ce lien: "+url+" </li>\r\n"
+						+ "</ul>";
 				CPENG="<h1>Cookie Policy for "+name+"</h1>\r\n"
 						+ "\r\n"
 						+ "<p>This is the Cookie Policy for "+name+", accessible from "+url+"</p>\r\n"
@@ -1916,14 +1997,17 @@ public class Legal {
 			Aboutn="A propos de nous";
 			DCMAn="DMCA";
 			disc=disfr;
+			Cookie=CPFR;
 			C=CCPAFR;
 			disn="Avertissement";
+			cookien="Politique de cookie";
 			}
 			else if( rdbtnNewRadioButton_2.isSelected()) {About=AboutESP;
 			Aboutn="sobre nosotros";
 			DCMA=DCMAESP;
 			DCMAn="DMCA";
 			disc=disESP;
+			
 			disn="Descargo de responsabilidad";}
 			else if( rdbtnNewRadioButton_3.isSelected()) {About=AboutJP;}
 			else if( rdbtnNewRadioButton_4.isSelected()) {About=AboutAR;}
@@ -1944,35 +2028,47 @@ public class Legal {
 				
 				String username;
 				String password;
+				
+				Integer result1 = null;
+				Integer result2 = null;
+				Integer result3 = null;
+				Integer result4 = null;
+				Integer result5 = null;
+				Integer result6 = null;
+				Integer result7 = null;
 					username=textField_3.getText();
 					password=passwordField.getText();
+					
 						Wordpress wp = null;
+						
+						//"https://"+gurl+"//xmlrpc.php"
 						try {
-							wp = new Wordpress(username, password, "https://"+gurl+"//xmlrpc.php");
+							wp = new Wordpress(username, password, "https://"+gurl+"/xmlrpc.php");
 						} catch (MalformedURLException e1) {
 							// TODO Auto-generated catch block
-							try {
-								wp = new Wordpress(username, password, "https://www."+gurl+"//xmlrpc.php");
-							} catch (MalformedURLException e2) {
+					
 								// TODO Auto-generated catch block
-								error err = new error(e1.toString()+"\n"+e2.toString());
+								error err = new error(e1.toString());
 								err.setVisible(true);
 								frame.dispose();
 							}
 							
 
 							
-						}
+						
 					
 				
-					
+
+						try {
+							Post CP=new Post();
 					Post PP= new Post();
+					
 					Post TC=new Post();
 					Post D=new Post();
 					Post AB=new Post();
 					Post Di=new Post();
 					Post CC=new Post();
-					Post CP=new Post();
+					
 					
 					PP.setPost_type("page");
 					TC.setPost_type("page");
@@ -2012,50 +2108,45 @@ public class Legal {
 					Di.setPost_status("publish");
 					
 					
-					Integer result1 = null;
-					Integer result2 = null;
-					Integer result3 = null;
-					Integer result4 = null;
-					Integer result5 = null;
-					Integer result6 = null;
-					Integer result7 = null;
 
-					try {
-						
-						result1 = wp.newPost(PP);
-						result2 = wp.newPost(TC);
-						result3 = wp.newPost(D);
-						result4 = wp.newPost(AB);
-						result5 = wp.newPost(Di);
-						result6 = wp.newPost(CC);
-						result7 = wp.newPost(CP);
-
-						
+					
+				
+				
+					if(pp) {
+					result1 = wp.newPost(PP);}
+					if(tc) {
+					result2 = wp.newPost(TC);}
+					if(cc) {
+					result3 = wp.newPost(CC);}
+					if(di) {
+					result4 = wp.newPost(Di);}
+					if(cp) {
+					result5 = wp.newPost(CP);}
+					if(dm) {
+					result6 = wp.newPost(D);}
+					if(ab) {
+					result7 = wp.newPost(AB);}
+					
 						
 					} catch (InsufficientRightsException e1) {
 						// TODO Auto-generated catch block
-						error err = new error(e1.toString());
-						err.setVisible(true);
-
-						frame.dispose();
+						e1.printStackTrace();
 					} catch (InvalidArgumentsException e1) {
 						// TODO Auto-generated catch block
-						error err = new error(e1.toString());
-						err.setVisible(true);
-
-						frame.dispose();
-						
+						e1.printStackTrace();
 					} catch (ObjectNotFoundException e1) {
 						// TODO Auto-generated catch block
-						error err = new error(e1.toString());
-						err.setVisible(true);
-					
-						frame.dispose();
+						e1.printStackTrace();
 					} catch (XmlRpcFault e1) {
 						// TODO Auto-generated catch block
-						error err = new error(e1.toString());
-						frame.dispose();
-					}catch (XmlRpcException e1) {error err = new error(e1.toString());err.setVisible(true);
+						e1.printStackTrace();
+					
+						
+						
+
+						
+						
+					} catch (XmlRpcException e1) {error err = new error(e1.toString());err.setVisible(true);
 					frame.dispose();}
 					String o="";
 					o=o+("new post page id: " + result1+"\n");
@@ -2130,5 +2221,83 @@ public class Legal {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(276, 281, 117, 20);
 		frame.getContentPane().add(passwordField);
+		
+		 final JCheckBox CheckBoxPrivacy = new JCheckBox("Privacy");
+		 CheckBoxPrivacy.addChangeListener(new ChangeListener() {
+		 	public void stateChanged(ChangeEvent e) {
+		 		if (CheckBoxPrivacy.isSelected()) {pp=true;}
+		 		if (!CheckBoxPrivacy.isSelected()) {pp=false;}
+		 	}
+		 });
+		
+		CheckBoxPrivacy.setBounds(143, 19, 97, 23);
+		frame.getContentPane().add(CheckBoxPrivacy);
+		
+		
+		final JCheckBox chckbxTerms = new JCheckBox("Terms");
+		chckbxTerms.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (chckbxTerms.isSelected()) {tc=true;}
+		 		if (!chckbxTerms.isSelected()) {tc=false;}
+			}
+		});
+		chckbxTerms.setBounds(143, 46, 97, 23);
+		frame.getContentPane().add(chckbxTerms);
+		
+		final JCheckBox chckbxCcpa = new JCheckBox("CCPA");
+		chckbxCcpa.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (chckbxCcpa.isSelected()) {cc=true;}
+		 		if (!chckbxCcpa.isSelected()) {cc=false;}
+			}
+		});
+		chckbxCcpa.setBounds(143, 74, 97, 23);
+		frame.getContentPane().add(chckbxCcpa);
+		
+		final JCheckBox chckbxDisclaimer = new JCheckBox("Disclaimer");
+		chckbxDisclaimer.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (!chckbxDisclaimer.isSelected()) {di=false;}
+		 		if (chckbxDisclaimer.isSelected()) {di=true;}
+			}
+		});
+		chckbxDisclaimer.setBounds(143, 98, 97, 23);
+		frame.getContentPane().add(chckbxDisclaimer);
+		
+		final JCheckBox chckbxCookiePolicy = new JCheckBox("Cookie Policy");
+		chckbxCookiePolicy.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+					if (!chckbxCookiePolicy.isSelected()) {cp=false;}
+			 		if (chckbxCookiePolicy.isSelected()) {cp=true;}
+				
+			}
+		});
+		chckbxCookiePolicy.setBounds(143, 123, 97, 23);
+		frame.getContentPane().add(chckbxCookiePolicy);
+		
+		final JCheckBox chckbxDmca = new JCheckBox("DMCA");
+		chckbxDmca.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+					if (!chckbxDmca.isSelected()) {dm=false;}
+			 		if (chckbxDmca.isSelected()) {dm=true;}
+				
+			}
+		});
+		chckbxDmca.setBounds(143, 146, 97, 23);
+		frame.getContentPane().add(chckbxDmca);
+		
+		final JCheckBox chckbxAboutUs = new JCheckBox("About us");
+		chckbxAboutUs.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+					if (!chckbxAboutUs.isSelected()) {ab=false;}
+			 		if (chckbxAboutUs.isSelected()) {ab=true;}
+				
+			}
+		});
+		chckbxAboutUs.setBounds(145, 172, 97, 23);
+		frame.getContentPane().add(chckbxAboutUs);
 	}
 }
