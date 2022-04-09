@@ -2149,13 +2149,13 @@ public class Legal {
 					} catch (XmlRpcException e1) {error err = new error(e1.toString());err.setVisible(true);
 					frame.dispose();}
 					String o="";
-					o=o+("new post page id: " + result1+"\n");
-					o=o+("new post page id: " + result2+"\n");
-					o=o+("new post page id: " + result3+"\n");
-					o=o+("new post page id: " + result4+"\n");
-					o=o+("new post page id: " + result5+"\n");
-					o=o+("new post page id: " + result6+"\n");
-					o=o+("new post page id: " + result7+"\n");
+					o=o+("new Privacy Policy page id: " + result1+"\n");
+					o=o+("new Terms and conditions page id: " + result2+"\n");
+					o=o+("new CCPA page id: " + result3+"\n");
+					o=o+("new Disclaimer page id: " + result4+"\n");
+					o=o+("new Cookie Policy page id: " + result5+"\n");
+					o=o+("new DMCA page id: " + result6+"\n");
+					o=o+("new About us page id: " + result7+"\n");
 
 					
 					error err = new error(o);
